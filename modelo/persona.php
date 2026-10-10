@@ -5,12 +5,12 @@ require_once __DIR__ . '/profesion.php';
 class Persona {
     private const NOMBRE_CLASE = 'Persona';
     
-    public $id;
-    public $nombre;
-    public $email;
-    public $edad;
-    public $profesion_id;
-    public $profesion = null;
+    public $Id;
+    public $Nombre;
+    public $Email;
+    public $Edad;
+    public $ProfesionId;
+    public $Profesion = null;
 
     public function __construct() {
         // Constructor vacío para que FETCH_CLASS funcione correctamente
@@ -18,12 +18,12 @@ class Persona {
 
     // Consulta la relacion al navegarla y reutiliza el objeto mientras conserve el mismo ID.
     public function getProfesion() {
-        if ($this->profesion !== null && (int) $this->profesion->id === (int) $this->profesion_id) {
-            return $this->profesion;
+        if ($this->Profesion !== null && (int) $this->profesion->Id === (int) $this->ProfesionId) {
+            return $this->Profesion;
         }
-        $profesion = Profesion::obtenerPorId($this->profesion_id);
+        $profesion = Profesion::obtenerPorId($this->ProfesionId);
         if (!$profesion) {
-            $mensaje = "No se encontro la profesion de la persona con ID " . $this->id;
+            $mensaje = "No se encontro la profesion de la persona con ID " . $this->Id;
             error_log($mensaje);
             throw new RuntimeException($mensaje);
         }
@@ -39,7 +39,7 @@ class Persona {
     public static function obtenerTodas() {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('SELECT id, nombre, email, edad, profesion_id FROM personas ORDER BY id DESC');
+            $stmt = $db->prepare('SELECT Id, Nombre, Email, Edad, ProfesionId FROM personas ORDER BY Id DESC');
             $stmt->execute();
             
             // PDO mapea automáticamente las columnas a las propiedades de la clase
@@ -58,7 +58,7 @@ class Persona {
     public static function obtenerPorId($id) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('SELECT id, nombre, email, edad, profesion_id FROM personas WHERE id = :id');
+            $stmt = $db->prepare('SELECT Id, Nombre, Email, Edad, ProfesionId FROM personas WHERE Id = :id');
             $stmt->execute([':id' => $id]);
             
             // PDO mapea automáticamente las columnas a las propiedades de la clase
@@ -76,7 +76,7 @@ class Persona {
     public static function agregar($nombre, $email, $edad, $profesion_id) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('INSERT INTO personas (nombre, email, edad, profesion_id) VALUES (:nombre, :email, :edad, :profesion_id)');
+            $stmt = $db->prepare('INSERT INTO personas (Nombre, Email, Edad, ProfesionId) VALUES (:nombre, :email, :edad, :profesionId)');
             
             return $stmt->execute([
                 ':nombre' => $nombre,
@@ -96,14 +96,14 @@ class Persona {
     public static function editar($id, $nombre, $email, $edad, $profesion_id) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('UPDATE personas SET nombre = :nombre, email = :email, edad = :edad, profesion_id = :profesion_id WHERE id = :id');
+            $stmt = $db->prepare('UPDATE personas SET Nombre = :nombre, Email = :email, Edad = :edad, ProfesionId = :profesion_id WHERE id = :id');
             
             return $stmt->execute([
                 ':id' => $id,
                 ':nombre' => $nombre,
                 ':email' => $email,
                 ':edad' => $edad,
-                ':profesion_id' => $profesion_id
+                ':profesion_id' => $profesionId
             ]);
         } catch (PDOException $e) {
             error_log("Error al editar persona: " . $e->getMessage());
@@ -117,7 +117,7 @@ class Persona {
     public static function eliminar($id) {
         try {
             $db = Database::getInstance()->getConnection();
-            $stmt = $db->prepare('DELETE FROM personas WHERE id = :id');
+            $stmt = $db->prepare('DELETE FROM personas WHERE Id = :id');
             
             return $stmt->execute([':id' => $id]);
         } catch (PDOException $e) {

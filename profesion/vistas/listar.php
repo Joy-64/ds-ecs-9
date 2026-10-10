@@ -38,7 +38,7 @@
                         <a href="editar.php?id=<?php echo $p->id; ?>" class="btn btn-sm btn-warning">Editar</a>
                         <form method="POST" action="../acciones.php" style="display:inline;">
                             <input type="hidden" name="accion" value="eliminar">
-                            <input type="hidden" name="id" value="<?php echo $p->id; ?>">
+                            <input type="hidden" name="id" value="<?php echo $p->Id; ?>">
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Está seguro?')">Eliminar</button>
                         </form>
                     </td>

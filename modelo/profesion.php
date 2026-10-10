@@ -2,8 +2,8 @@
 require_once __DIR__ . '/../core/Database.php';
 
 class Profesion {
-    public $id;
-    public $nombre;
+    public $Id;
+    public $Nombre;
 
     public static function obtenerTodas() {
         try {
@@ -35,7 +35,7 @@ class Profesion {
             $stmt = $db->prepare('INSERT INTO profesiones (nombre) VALUES (:nombre)');
             
             return $stmt->execute([
-                ':nombre' => $nombre,
+                ':nombre' => $Nombre,
                 
              
             ]);
@@ -54,8 +54,8 @@ class Profesion {
             $stmt = $db->prepare('UPDATE profesiones SET nombre = :nombre  WHERE id = :id');
             
             return $stmt->execute([
-                ':id' => $id,
-                ':nombre' => $nombre,
+                ':id' => $Id,
+                ':nombre' => $Nombre,
             ]);
         } catch (PDOException $e) {
             error_log("Error al editar profesion: " . $e->getMessage());
@@ -71,7 +71,7 @@ class Profesion {
             $db = Database::getInstance()->getConnection();
             $stmt = $db->prepare('DELETE FROM profesiones WHERE id = :id');
             
-            return $stmt->execute([':id' => $id]);
+            return $stmt->execute([':id' => $Id]);
         } catch (PDOException $e) {
             error_log("Error al eliminar profesion: " . $e->getMessage());
             return false;

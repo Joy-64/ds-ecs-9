@@ -19,15 +19,15 @@ $profesion = $id ? Profesion::obtenerPorId($id) : null;
                 <?php if ($profesion): ?>
                 <div class="card">
                     <div class="card-body">
-                        <p><strong>ID:</strong> <?php echo $profesion->id; ?></p>
-                        <p><strong>Nombre:</strong> <?php echo $profesion->nombre; ?></p>
+                        <p><strong>ID:</strong> <?php echo $profesion->Id; ?></p>
+                        <p><strong>Nombre:</strong> <?php echo $profesion->Nombre; ?></p>
                       
                     </div>
                 </div>
 
                 <div class="mt-3">
                     <a href="listar.php" class="btn btn-secondary">Volver</a>
-                    <a href="editar.php?id=<?php echo $profesion->id; ?>" class="btn btn-warning">Editar</a>
+                    <a href="editar.php?id=<?php echo $profesion->Id; ?>" class="btn btn-warning">Editar</a>
                 </div>
                 <?php else: ?>
                 <div class="alert alert-danger">Profesion no encontrada</div>

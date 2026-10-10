@@ -21,12 +21,12 @@ $accion = $profesion ? 'editar' : 'agregar';
                 <form method="POST" action="../acciones.php">
                     <input type="hidden" name="accion" value="<?php echo $accion; ?>">
                     <?php if ($profesion): ?>
-                    <input type="hidden" name="id" value="<?php echo $profesion->id; ?>">
+                    <input type="hidden" name="id" value="<?php echo $profesion->Id; ?>">
                     <?php endif; ?>
 
                     <div class="mb-3">
                         <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" value="<?php echo $profesion ? $profesion->nombre : ''; ?>" required>
+                        <input type="text" class="form-control" name="nombre" value="<?php echo $profesion ? $profesion->Nombre : ''; ?>" required>
                     </div>
 
             

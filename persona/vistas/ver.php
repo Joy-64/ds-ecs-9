@@ -19,17 +19,17 @@ $persona = $id ? Persona::obtenerPorId($id) : null;
                 <?php if ($persona): ?>
                 <div class="card">
                     <div class="card-body">
-                        <p><strong>ID:</strong> <?php echo $persona->id; ?></p>
-                        <p><strong>Nombre:</strong> <?php echo $persona->nombre; ?></p>
-                        <p><strong>Email:</strong> <?php echo $persona->email; ?></p>
-                        <p><strong>Edad:</strong> <?php echo $persona->edad; ?></p>
-                        <p><strong>Profesión:</strong> <?php echo htmlspecialchars($persona->getProfesion()->nombre, ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p><strong>ID:</strong> <?php echo $persona->Id; ?></p>
+                        <p><strong>Nombre:</strong> <?php echo $persona->Nombre; ?></p>
+                        <p><strong>Email:</strong> <?php echo $persona->Email; ?></p>
+                        <p><strong>Edad:</strong> <?php echo $persona->Edad; ?></p>
+                        <p><strong>Profesión:</strong> <?php echo htmlspecialchars($persona->getProfesion()->Nombre, ENT_QUOTES, 'UTF-8'); ?></p>
                     </div>
                 </div>
 
                 <div class="mt-3">
                     <a href="listar.php" class="btn btn-secondary">Volver</a>
-                    <a href="editar.php?id=<?php echo $persona->id; ?>" class="btn btn-warning">Editar</a>
+                    <a href="editar.php?id=<?php echo $persona->Id; ?>" class="btn btn-warning">Editar</a>
                 </div>
                 <?php else: ?>
                 <div class="alert alert-danger">Persona no encontrada</div>
